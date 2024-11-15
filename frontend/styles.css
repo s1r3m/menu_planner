@@ -1,0 +1,83 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Color palette */
+:root {
+    --wood-brown: #A0522D;
+    --light-wood: #DEB887;
+    --dark-brown: #8B4513;
+    --warm-yellow: #F0E68C;
+    --cream: #FFF5EE;
+}
+
+/* Body styling */
+body {
+    background-color: var(--cream);
+    color: var(--dark-brown);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes full viewport height */
+}
+
+/* Header styling */
+header {
+    background-color: var(--wood-brown);
+    color: white;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    flex-shrink: 0; /* Prevent shrinking when content overflows */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.auth-buttons .btn-primary {
+    background-color: var(--warm-yellow);
+    color: var(--dark-brown);
+    margin-right: 10px;
+}
+
+/* Main Content Styling */
+main {
+    flex: 1; /* Ensure main content grows to fill available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.carousel-container {
+    width: 100%;
+}
+
+.carousel img {
+    height: 60vh;
+    object-fit: cover;
+    width: 100%; /* Ensure the image spans full width */
+}
+
+.main-text h1 {
+    color: var(--dark-brown);
+    margin-top: 2vh;
+}
+
+/* Footer styling */
+footer {
+    background-color: var(--light-wood);
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
