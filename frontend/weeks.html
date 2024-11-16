@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="d-flex justify-content-between align-items-center px-4">
+        <div class="logo">Menu Planner</div>
+        <div class="user-info d-flex align-items-center">
+            <img src="" alt="Avatar" class="avatar">
+            <span class="username mx-2">John Doe</span>
+            <button class="btn btn-danger logout-btn">Log Out</button>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="main-content">
+        <div class="week-grid">
+            <!-- Empty placeholders -->
+            <div class="placeholder created-week">Week 1</div>
+            <div class="placeholder add-week">+</div>
+            <div class="placeholder empty"></div>
+            <div class="placeholder empty"></div>
+            <div class="placeholder empty"></div>
+            <div class="placeholder empty"></div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="text-center">
+        <p>&copy; Menu Planner 2024</p>
+    </footer>
+
+    <!-- Bootstrap JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Navigation
+        document.querySelector('.logout-btn').addEventListener('click', function() {
+            window.location.href = 'index.html'; // Redirect to Main Page
+        });
+    </script>
+</body>
+</html>
