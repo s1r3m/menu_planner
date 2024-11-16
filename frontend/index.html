@@ -13,8 +13,8 @@
     <header class="d-flex justify-content-between align-items-center px-4">
         <div class="logo">Menu Planner</div>
         <div class="auth-buttons">
-            <button class="btn btn-primary">Sign Up</button>
-            <button class="btn btn-secondary">Login</button>
+            <button class="btn btn-primary" onclick="fetchWeeks('signup')">Sign Up</button>
+            <button class="btn btn-secondary" onclick="fetchWeeks('login')">Login</button>
         </div>
     </header>
 
@@ -60,14 +60,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        // Navigation
-        document.querySelector('.btn-primary').addEventListener('click', function() {
-            window.location.href = 'weeks.html'; // Redirect to Main Page
-        });
-        document.querySelector('.btn-secondary').addEventListener('click', function() {
-            window.location.href = 'weeks.html'; // Redirect to Main Page
-        });
-    </script>
+    <script src="scripts.js"></script>
 </body>
 </html>
