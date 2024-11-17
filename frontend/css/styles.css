@@ -41,7 +41,7 @@ header {
     font-weight: bold;
 }
 
-.auth-buttons .btn-primary {
+.btn-primary {
     background-color: var(--warm-green);
     color: var(--dark-brown);
     margin-right: 10px;
@@ -56,15 +56,6 @@ main {
     justify-content: center;
     padding: 1rem;
 }
-
-/*!* Main Content *!*/
-/*.main-content {*/
-/*    flex: 1;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 2rem;*/
-/*}*/
 
 .carousel-container {
     width: 100%;
