@@ -27,6 +27,7 @@ SHELL = /bin/bash  # Using bash as default shell
 CHECK_PYTHON = $(shell which $(PYTHON))
 
 export PATH := $(VIRTUAL_ENV)/bin:$(PATH)
+export PYTHONPATH = $(PROJECT_PATH)/menu_planner
 
 all: help
 

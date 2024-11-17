@@ -1,9 +1,3 @@
-async function fetchWeeks(button) {
-    // Save the button name in localStorage to use after redirect
-    localStorage.setItem('button', button);
-    // Redirect to weeks.html
-    window.location.href = 'weeks.html';
-}
 
 function updateUsername(data) {
     const username = document.querySelector(".username")

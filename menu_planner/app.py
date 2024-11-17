@@ -1,42 +1,29 @@
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request, session
 
-from models import User, db
+from storage import db
+from storage.models import User
+from settings import DATABASE_URL, SECRET_KEY
 
 app = Flask(__name__)
+app.secret_key = SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-# Define mock user data
-users_data = {
-    'santa_clause': [
-        {'name': 'Week 1'},
-        {'name': 'Xmas Week'},
-    ],
-    'Filipp': [],  # No weeks added for Filipp
-}
+# Initialize SQLAlchemy with the app
+db.init_app(app)
+
 
 @app.route('/api/get_weeks', methods=['GET'])
 def get_weeks():
-    button_name = ''
-    # Determine response based on the button pressed
-    match button_name:
-        case 'login':
-            response = {
-                'username': 'Santa Clause',
-                'weeks': users_data['santa_clause'],
-                'avatar': 'av1.png',
-            }
-        case 'signup':
-            response = {
-                'username': 'Filipp',
-                'weeks': users_data['Filipp'],
-                'avatar': 'av2.png',
-            }
-        case _:
-            response = {
-                'username': 'Unkown User',
-                'weeks': [],
-            }
+    user_id = session.get('user_id')
+    if not user_id:
+        return jsonify({'error': 'User unauthorized!'}), 401
 
-    return jsonify(response)
+    response = {
+        'username': session['username'],
+        # 'weeks': user.weeks,
+    }
+    return jsonify(response), 200
 
 
 @app.route('/api/login', methods=['POST'])
@@ -46,13 +33,17 @@ def login_user():
     password = data.get('password')
 
     # Fetch user
-    user = User.query.filter_by(email=email).one_or_none()
-    if not (user and user.check_password(password)):
-        return jsonify({'error': 'Invalid email or password'}), 401
+    user: User = User.query.filter_by(email=email).one_or_none()
+    if not user:
+        return jsonify({'error': 'Invalid email'}), 409
 
+    if not  user.check_password(password):
+        return jsonify({'error': 'Invalid password'}), 409
+
+    session['user_id'] = user.id
+    session['username'] = user.username
     response = {
-        'username': user.username,
-        'email': user.email,
+        'message': 'User logged in successfully',
     }
     return jsonify(response), 200
 
@@ -67,7 +58,7 @@ def register_user():
     # Check if user exists
     user = User.query.filter_by(email=email).one_or_none()
     if user:
-        return jsonify({'error': 'User already exists'}), 400
+        return jsonify({'error': 'User already exists'}), 409
 
     # Hash the password and store user
     user = User(username, email)
@@ -76,8 +67,13 @@ def register_user():
     db.session.add(user)
     db.session.commit()
 
+    session['user_id'] = user.id
+    session['username'] = user.username
     return jsonify({'message': 'User registered successfully'}), 201
 
 
 if __name__ == '__main__':
+    with app.app_context():
+        # Create tables if they don't exist
+        db.create_all()
     app.run('0.0.0.0', 8000)

@@ -45,31 +45,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/scripts.js"></script>
     <script>
-        // Navigation
-        document.querySelector('.logout-btn').addEventListener('click', function() {
-            window.location.href = 'index.html'; // Redirect to Main Page
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
-            const button = localStorage.getItem('button'); // Retrieve the button name
-            console.log(`Loaded weeks page, button: ${button}`);
-
-            // Make a request to fetch weeks data
-            if (button) {
-                fetch('/api/get_weeks', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ button }) // Send the button name
-                }).then(
-                    response => response.json()
-                ).then(
-                    data => {
-                        console.log("Work with: ", data)
-                        updateUsername(data);
-                        updatePlaceholders(data);
-                    }
-                ).catch(error => console.error("Error fetching: ", error));
-            }
+            fetch('/api/get_weeks', {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'},
+            }).then(
+                response => response.json()
+            ).then(
+                data => {
+                    console.log("Work with: ", data)
+                    updateUsername(data);
+                    updatePlaceholders(data);
+                }
+            ).catch(error => {
+                console.error("Error fetching: ", error)
+                window.location.href = "/";
+            });
         });
     </script>
 </body>
