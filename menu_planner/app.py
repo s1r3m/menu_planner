@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, send_from_directory
-# from flask.typing import Response
+from flask import Flask, request, jsonify
 
-app = Flask(__name__, static_folder='../frontend')
+app = Flask(__name__)  # , static_url_path='/', static_folder='../frontend')
 
 # Define mock user data
 users_data = {
@@ -12,27 +11,9 @@ users_data = {
     'Filipp': [],  # No weeks added for Filipp
 }
 
-
-@app.route('/ping')
-def ping():
-    return jsonify('pong')
-
-
-@app.route('/')
-def home():
-    return send_from_directory(app.static_folder, 'index.html')
-
-
-@app.route('/<path:filename>')
-def static_files(filename):
-    """Serve static files like CSS, images, and additional HTML pages."""
-    return send_from_directory(app.static_folder, filename)
-
-
-@app.route('/get-weeks', methods=['POST'])
+@app.route('/api/get_weeks', methods=['POST'])
 def get_weeks():
     """Endpoint to retrieve weeks data based on the button clicked."""
-    # Parse the request parameter
     button_name = request.json.get('button')
 
     # Determine response based on the button pressed
@@ -47,7 +28,7 @@ def get_weeks():
             response = {
                 'username': 'Filipp',
                 'weeks': users_data['Filipp'],
-                'avatar': 'av2.png'
+                'avatar': 'av2.png',
             }
         case _:
             response = {
@@ -59,4 +40,4 @@ def get_weeks():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run('0.0.0.0', 8000)
