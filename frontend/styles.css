@@ -1,0 +1,177 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Color palette */
+:root {
+    --wood-brown: #A0522D;
+    --light-wood: #DEB887;
+    --dark-brown: #8B4513;
+    --warm-green: #D3E2CA;
+    --cream: #FFF5EE;
+}
+
+/* Body styling */
+body {
+    background-color: var(--cream);
+    color: var(--dark-brown);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure the body takes full viewport height */
+}
+
+/* Header styling */
+header {
+    background-color: var(--wood-brown);
+    color: white;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    flex-shrink: 0; /* Prevent shrinking when content overflows */
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.auth-buttons .btn-primary {
+    background-color: var(--warm-green);
+    color: var(--dark-brown);
+    margin-right: 10px;
+}
+
+/* Main Content Styling */
+main {
+    flex: 1; /* Ensure main content grows to fill available space */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/*!* Main Content *!*/
+/*.main-content {*/
+/*    flex: 1;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    padding: 2rem;*/
+/*}*/
+
+.carousel-container {
+    width: 100%;
+}
+
+.carousel img {
+    height: 60vh;
+    object-fit: cover;
+    width: 100%; /* Ensure the image spans full width */
+}
+
+.main-text h1 {
+    color: var(--dark-brown);
+    margin-top: 2vh;
+}
+
+/* Header updates for Personal Page */
+.user-info {
+    color: white;
+    font-size: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: #ff4d4d;
+    border: none;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    color: white;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background-color: #ff1a1a;
+}
+
+.week-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 2rem; /* Gap between items */
+    width: 100%;
+    max-width: 1200px; /* Maximum width */
+}
+
+.placeholder {
+    width: 100%;
+    height: min(20vw, 300px); /* Height adapts to viewport, minimum 300px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: min(3vw, 1.5rem); /* Font size adapts, minimum 1.5rem */
+    border-radius: 10px;
+    border: 2px dotted #CCC;
+    transition: transform 0.2s ease; /* Adds a hover effect transition */
+}
+
+/* Add a hover effect for better UX */
+.placeholder.created-week:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.placeholder.add-week:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Empty state */
+.placeholder.empty {
+    border: 2px dotted #ccc;
+    color: #ccc;
+}
+
+/* Filled states */
+.placeholder.created-week {
+    background-color: var(--warm-green);
+    color: var(--dark-brown);
+    font-weight: bold;
+    text-align: center;
+}
+
+.placeholder.add-week {
+    border: 2px dashed var(--wood-brown);
+    font-size: 2rem;
+    color: var(--wood-brown);
+    cursor: pointer;
+}
+
+.placeholder.add-week:hover {
+    background-color: var(--light-wood);
+    color: var(--dark-brown);
+}
+
+/* Footer styling */
+footer {
+    background-color: var(--light-wood);
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
