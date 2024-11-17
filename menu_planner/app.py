@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify, send_from_directory
-from flask.typing import Response
+# from flask.typing import Response
 
 app = Flask(__name__, static_folder='../frontend')
 
@@ -14,23 +14,23 @@ users_data = {
 
 
 @app.route('/ping')
-def ping() -> Response:
+def ping():
     return jsonify('pong')
 
 
 @app.route('/')
-def home() -> Response:
+def home():
     return send_from_directory(app.static_folder, 'index.html')
 
 
 @app.route('/<path:filename>')
-def static_files(filename) -> Response:
+def static_files(filename):
     """Serve static files like CSS, images, and additional HTML pages."""
     return send_from_directory(app.static_folder, filename)
 
 
 @app.route('/get-weeks', methods=['POST'])
-def get_weeks() -> Response:
+def get_weeks():
     """Endpoint to retrieve weeks data based on the button clicked."""
     # Parse the request parameter
     button_name = request.json.get('button')
@@ -41,11 +41,13 @@ def get_weeks() -> Response:
             response = {
                 'username': 'Santa Clause',
                 'weeks': users_data['santa_clause'],
+                'avatar': 'av1.png',
             }
         case 'signup':
             response = {
                 'username': 'Filipp',
                 'weeks': users_data['Filipp'],
+                'avatar': 'av2.png'
             }
         case _:
             response = {

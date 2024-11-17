@@ -114,20 +114,30 @@ main {
 .week-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 2rem; /* Slightly larger gap between items */
+    gap: 2rem; /* Gap between items */
     width: 100%;
-    max-width: 1200px; /* Increased width for larger grid */
+    max-width: 1200px; /* Maximum width */
 }
 
-/* Placeholders: Larger size */
 .placeholder {
     width: 100%;
-    height: 300px; /* Twice the height */
+    height: min(20vw, 300px); /* Height adapts to viewport, minimum 300px */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem; /* Slightly larger font */
+    font-size: min(3vw, 1.5rem); /* Font size adapts, minimum 1.5rem */
     border-radius: 10px;
+    border: 2px dotted #CCC;
+    transition: transform 0.2s ease; /* Adds a hover effect transition */
+}
+
+/* Add a hover effect for better UX */
+.placeholder.created-week:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.placeholder.add-week:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 /* Empty state */
