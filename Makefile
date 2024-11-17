@@ -13,7 +13,7 @@ SETUPTOOLS_VERSION = 65.6.3
 WHEEL_VERSION = 0.38.4
 
 # Paths.
-PROJECT_PATH = $(shell dirname $(CURDIR))
+PROJECT_PATH = $(CURDIR)
 
 export VIRTUAL_ENV ?= $(PROJECT_PATH)/.venv_at_$(PYTHON)
 VIRTUAL_ENV_POETRY = $(PROJECT_PATH)/.venv_poetry
@@ -61,8 +61,15 @@ endif
 ## ------------------------------------------------ APP ----------------------------------------------------------------
 
 ## @App Start environment.
-start: $(VENV_ACTIVATE)
-	python app.py
+start: stop
+	cd $(PROJECT_PATH)/docker        && \
+		docker-compose build --pull  && \
+		docker-compose up
+stop:
+	cd $(PROJECT_PATH)/docker && \
+		docker-compose kill   && \
+		docker-compose down --volumes
+
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 
@@ -70,7 +77,6 @@ start: $(VENV_ACTIVATE)
 lint: $(VENV_ACTIVATE)
 	black --check --diff --color $(PROJECT_PATH)/menu_planner
 	pylint $(PROJECT_PATH)/menu_planner/*.py
-	#mypy $(PROJECT_PATH)/menu_planner
 
 ## @Tests Run code formatter.
 style: $(VENV_ACTIVATE)
