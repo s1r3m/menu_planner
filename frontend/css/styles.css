@@ -41,6 +41,13 @@ header {
     font-weight: bold;
 }
 
+/* Uniform button sizes across the app */
+.btn {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+}
+
 .btn-primary {
     background-color: var(--warm-green);
     color: var(--dark-brown);

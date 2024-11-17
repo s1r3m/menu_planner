@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 
-app = Flask(__name__)  # , static_url_path='/', static_folder='../frontend')
+from models import User, db
+
+app = Flask(__name__)
 
 # Define mock user data
 users_data = {
@@ -11,11 +13,9 @@ users_data = {
     'Filipp': [],  # No weeks added for Filipp
 }
 
-@app.route('/api/get_weeks', methods=['POST'])
+@app.route('/api/get_weeks', methods=['GET'])
 def get_weeks():
-    """Endpoint to retrieve weeks data based on the button clicked."""
-    button_name = request.json.get('button')
-
+    button_name = ''
     # Determine response based on the button pressed
     match button_name:
         case 'login':
@@ -37,6 +37,46 @@ def get_weeks():
             }
 
     return jsonify(response)
+
+
+@app.route('/api/login', methods=['POST'])
+def login_user():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    # Fetch user
+    user = User.query.filter_by(email=email).one_or_none()
+    if not (user and user.check_password(password)):
+        return jsonify({'error': 'Invalid email or password'}), 401
+
+    response = {
+        'username': user.username,
+        'email': user.email,
+    }
+    return jsonify(response), 200
+
+
+@app.route('/api/register', methods=['POST'])
+def register_user():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+    username = data.get('username')
+
+    # Check if user exists
+    user = User.query.filter_by(email=email).one_or_none()
+    if user:
+        return jsonify({'error': 'User already exists'}), 400
+
+    # Hash the password and store user
+    user = User(username, email)
+    user.set_password(password)
+
+    db.session.add(user)
+    db.session.commit()
+
+    return jsonify({'message': 'User registered successfully'}), 201
 
 
 if __name__ == '__main__':
