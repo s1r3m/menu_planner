@@ -1,3 +1,5 @@
+async function login() {await fetch("login",  {method: "GET"})}
+
 
 function updateUsername(data) {
     const username = document.querySelector(".username")

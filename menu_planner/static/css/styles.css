@@ -130,12 +130,12 @@ main {
 }
 
 /* Add a hover effect for better UX */
-.placeholder.created-week:hover {
+.placeholder:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-.placeholder.add-week:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.placeholder.empty:hover {
+    transform: scale(1);
 }
 
 /* Empty state */

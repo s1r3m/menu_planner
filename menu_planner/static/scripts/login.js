@@ -27,5 +27,6 @@ async function handleLogin() {
     }
 }
 
+
 // Attach handler to login form
 document.querySelector('.auth-form').addEventListener('submit', handleLogin);

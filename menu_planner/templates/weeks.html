@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Weeks - Menu Planner{% endblock %}
+{% block content %}
+    <!-- Main Content Section -->
+    <main class="main-content">
+        <div class="week-grid">
+            {% for week in weeks %}
+            <div class="placeholder created-week">{{ week.name }}</div>
+            {% endfor %}
+            {% if weeks|length < 6 %}
+            <div class="placeholder add-week">+</div>
+            {% for _ in range(5 - weeks|length) %}
+            <div class="placeholder empty"></div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </main>
+{% endblock %}
