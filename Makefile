@@ -71,6 +71,8 @@ stop:
 		docker-compose kill   && \
 		docker-compose down --volumes
 
+local: $(VENV_ACTIVATE)
+	python $(PROJECT_PATH)/menu_planner/app.py
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 

@@ -41,11 +41,16 @@ header {
     font-weight: bold;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 /* Uniform button sizes across the app */
 .btn {
     font-size: 1rem;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1.25rem;
     border-radius: 8px;
+    cursor: pointer;
 }
 
 .btn-primary {
@@ -98,11 +103,6 @@ main {
 
 .logout-btn {
     background-color: #ff4d4d;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    color: white;
-    cursor: pointer;
 }
 
 .logout-btn:hover {
@@ -112,8 +112,8 @@ main {
 .week-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 2rem; /* Gap between items */
-    width: 100%;
+    gap: 5rem; /* Gap between items */
+    width: 500%;
     max-width: 1200px; /* Maximum width */
 }
 
@@ -167,9 +167,10 @@ main {
 /* Footer styling */
 footer {
     background-color: var(--light-wood);
-    height: 5vh;
+    height: min(4vh, 200px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; /* Prevent footer from shrinking */
+    font-size: 0.8rem;
 }

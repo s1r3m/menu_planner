@@ -10,20 +10,23 @@
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">Menu Planner</div>
-<!--        <nav>-->
-<!--            <a href="/">Home</a>-->
-<!--            <a href="/weeks">Weeks</a>-->
-<!--        </nav>-->
+        <div class="logo" onclick="window.location.href='/'">Menu Planner</div>
         <div class="auth-buttons">
+            {% if login -%}
             <button class="btn btn-secondary" onclick="window.location.href='/weeks'">Login</button>
+            {% endif -%}
+            {% if signup -%}
             <button class="btn btn-primary" onclick="window.location.href='/register'">Sign Up</button>
+            {% endif -%}
+            {% if logout -%}
+            <button class="btn logout-btn" onclick="window.location.href='/logout'">Logout</button>
+            {% endif -%}
         </div>
     </header>
 
     <!-- Main Content -->
     <main>
-        {% block content %}{% endblock %}
+        {% block content %}{% endblock -%}
     </main>
 
     <!-- Footer -->
