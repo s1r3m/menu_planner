@@ -17,7 +17,7 @@ def index() -> str:
 
 
 @routes.route('/login', methods=['GET', 'POST'])
-def login() -> str|Response:
+def login() -> str | Response:
     if current_user.is_authenticated:
         current_app.logger.info('Login -- User logged in: %s', current_user.username)
         return redirect(url_for('routes.weeks'))
@@ -26,9 +26,10 @@ def login() -> str|Response:
     if form.validate_on_submit():
         user = db.session.query(User).filter_by(username=form.username.data).first()
         if not (user and user.check_password(form.password.data)):
-            current_app.logger.debug('Login -- User not found: %s', form.username.data)
+            current_app.logger.debug('Login -- login failed: %s', form.username.data)
             form.password.error = 'Invalid username or password'
-            return redirect(url_for('routes.login'))
+            return render_template('login.html', signup=True, form=form)
+
         login_user(user, remember=form.remember_me.data)
         current_app.logger.info('Login -- user logged %s', user.username)
         next_page = request.args.get('next')
@@ -43,8 +44,7 @@ def login() -> str|Response:
 
 @routes.route('/weeks')
 @login_required
-def weeks() -> str|Response:
-    # weeks_data = [{'name': 'Week 1'}, {'name': 'Xmas Week'}]
+def weeks() -> str | Response:
     current_app.logger.debug('Weeks for %s', current_user.username)
     weeks = db.session.query(Week).filter_by(user_id=current_user.id)
     weeks_data = [{'name': week.name} for week in weeks]
@@ -82,7 +82,7 @@ def register() -> Response:
 
 
 @routes.route('/logout')
-def logout() -> str|Response:
+def logout() -> str | Response:
     logout_user()
     current_app.logger.info('Logout -- User logged out')
     return redirect(url_for('routes.index'))

@@ -86,7 +86,7 @@ migrate: $(VENV_ACTIVATE)
 ## @Tests Run linters.
 lint: $(VENV_ACTIVATE)
 	black --check --diff --color $(PROJECT_PATH)/menu_planner
-	pylint $(PROJECT_PATH)/menu_planner/*.py
+	pylint $(PROJECT_PATH)/menu_planner/
 
 ## @Tests Run code formatter.
 style: $(VENV_ACTIVATE)

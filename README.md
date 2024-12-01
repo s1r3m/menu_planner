@@ -4,14 +4,13 @@
 You can run it localy in docker by
 ```bash
 make install
-male start
+make start
 ```
 
-Run tests:
+Run tests (TBD):
 ```bash
 make test
 ```
-
 
 ## Contributing
 To run linters

@@ -16,22 +16,22 @@ class User(UserMixin, db.Model):
         self.username = username
 
     def __repr__(self) -> str:
-        return '<User {}>'.format(self.username)
+        return f'<User {self.username}>'
 
     def set_password(self, password: str) -> None:
-        current_app.logger.debug('Models set_password-- Password set for: %s', self.username)
+        current_app.logger.debug('Password set for: %s', self.username)
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password: str) -> bool:
         result = check_password_hash(self.password_hash, password)
-        current_app.logger.debug('Models -- Password checked for: %s %s', self.username, result)
+        current_app.logger.debug('Password checked for: %s %s', self.username, result)
         return result
 
 
 @login_manager.user_loader
-def load_user(id: str) -> User:
-    user = db.session.get(User, int(id))
-    current_app.logger.debug('Models load_user -- User loaded: %s', user)
+def load_user(user_id: str) -> User:
+    user = db.session.get(User, int(user_id))
+    current_app.logger.debug('User loaded: %s', user)
     return user
 
 
