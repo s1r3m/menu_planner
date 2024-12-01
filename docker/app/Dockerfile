@@ -13,6 +13,8 @@ COPY pyproject.toml poetry.lock /
 COPY docker/app/start.sh /usr/local/bin/
 RUN poetry install --without dev
 
+# Set PYTHONPATH to include /app for imports
+ENV PYTHONPATH=/app
 
 # Expose application port
 EXPOSE 8000

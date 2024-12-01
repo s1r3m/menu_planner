@@ -63,6 +63,7 @@ endif
 
 ## @App Start environment.
 start: stop
+	rm -rf $(PROJECT_PATH)/docker/app_logs && mkdir -p $(PROJECT_PATH)/docker/app_logs
 	cd $(PROJECT_PATH)/docker        && \
 		docker-compose build --pull  && \
 		docker-compose up
@@ -71,8 +72,14 @@ stop:
 		docker-compose kill   && \
 		docker-compose down --volumes
 
+in:
+	docker exec -it menu-planner-app bash
+
 local: $(VENV_ACTIVATE)
-	python $(PROJECT_PATH)/menu_planner/app.py
+	python $(PROJECT_PATH)/run.py
+
+migrate: $(VENV_ACTIVATE)
+	alembic -c $(PROJECT_PATH)/menu_planner/storage/alembic.ini upgrade head
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 

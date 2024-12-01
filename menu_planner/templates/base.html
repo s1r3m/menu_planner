@@ -13,13 +13,13 @@
         <div class="logo" onclick="window.location.href='/'">Menu Planner</div>
         <div class="auth-buttons">
             {% if login -%}
-            <button class="btn btn-secondary" onclick="window.location.href='/weeks'">Login</button>
+            <button class="btn btn-secondary" onclick=window.location.href="{{ url_for('routes.login') }}">Login</button>
             {% endif -%}
             {% if signup -%}
-            <button class="btn btn-primary" onclick="window.location.href='/register'">Sign Up</button>
+            <button class="btn btn-primary" onclick=window.location.href="{{ url_for('routes.register') }}">Sign Up</button>
             {% endif -%}
             {% if logout -%}
-            <button class="btn logout-btn" onclick="window.location.href='/logout'">Logout</button>
+            <button class="btn logout-btn" onclick=window.location.href="{{ url_for('routes.logout') }}">Logout</button>
             {% endif -%}
         </div>
     </header>

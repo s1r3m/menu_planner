@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -ex
 
-sleep 2
-poetry run alembic -c /app/storage/alembic.ini upgrade head
+poetry run alembic -c /migrations/alembic.ini upgrade head
 
 nginx
-poetry run python /app/app.py
+cd .. && poetry run gunicorn -w 1 -b "0.0.0.0:8000" "app:app"

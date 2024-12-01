@@ -7,6 +7,8 @@ services:
     volumes:
       - ./../menu_planner:/app/
       - ./../menu_planner/static:/var/www/static/:ro
+      - ./../migrations:/migrations/
+      - ./app_logs:/logs/
       - ./app/nginx.conf:/etc/nginx/nginx.conf:ro
     environment:
       - DATABASE_URL=postgresql://menu_planner:menu_planner@db/menu_planner

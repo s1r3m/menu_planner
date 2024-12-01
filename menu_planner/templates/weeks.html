@@ -3,6 +3,7 @@
 {% block content %}
     <!-- Main Content Section -->
     <main class="main-content">
+        <h2>Hi, {{ current_user.username }}!</h2>
         <div class="week-grid">
             {%- for week in weeks -%}
             <div class="placeholder created-week">{{ week.name }}</div>
