@@ -41,7 +41,19 @@ header {
     font-weight: bold;
 }
 
-.auth-buttons .btn-primary {
+.logo:hover {
+    cursor: pointer;
+}
+
+/* Uniform button sizes across the app */
+.btn {
+    font-size: 1rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-primary {
     background-color: var(--warm-green);
     color: var(--dark-brown);
     margin-right: 10px;
@@ -56,15 +68,6 @@ main {
     justify-content: center;
     padding: 1rem;
 }
-
-/*!* Main Content *!*/
-/*.main-content {*/
-/*    flex: 1;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    padding: 2rem;*/
-/*}*/
 
 .carousel-container {
     width: 100%;
@@ -100,11 +103,6 @@ main {
 
 .logout-btn {
     background-color: #ff4d4d;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9rem;
-    color: white;
-    cursor: pointer;
 }
 
 .logout-btn:hover {
@@ -114,8 +112,8 @@ main {
 .week-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 2rem; /* Gap between items */
-    width: 100%;
+    gap: 5rem; /* Gap between items */
+    width: 500%;
     max-width: 1200px; /* Maximum width */
 }
 
@@ -132,12 +130,12 @@ main {
 }
 
 /* Add a hover effect for better UX */
-.placeholder.created-week:hover {
+.placeholder:hover {
     transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
-.placeholder.add-week:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
+.placeholder.empty:hover {
+    transform: scale(1);
 }
 
 /* Empty state */
@@ -169,9 +167,10 @@ main {
 /* Footer styling */
 footer {
     background-color: var(--light-wood);
-    height: 5vh;
+    height: min(4vh, 200px);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0; /* Prevent footer from shrinking */
+    font-size: 0.8rem;
 }

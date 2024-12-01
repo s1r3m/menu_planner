@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.10-slim AS app
+FROM python:3.10-slim
 
 RUN apt-get update && apt-get install -y nginx && apt-get clean
 
@@ -13,6 +13,8 @@ COPY pyproject.toml poetry.lock /
 COPY docker/app/start.sh /usr/local/bin/
 RUN poetry install --without dev
 
+# Set PYTHONPATH to include /app for imports
+ENV PYTHONPATH=/app
 
 # Expose application port
 EXPOSE 8000

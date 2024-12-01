@@ -9,8 +9,13 @@ readme = "./README.md"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
 
+alembic = "^1.14.0"
 flask = "^3.1.0"
+flask-login = "^0.6.3"
+flask-sqlalchemy = "^3.1.1"
+flask-wtf = "^1.2.2"
 psycopg2-binary = "^2.9.10"
+gunicorn = "^23.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "7.0.1"
@@ -74,6 +79,7 @@ disable = '''
     too-few-public-methods,
     redefined-outer-name,
     no-member,
+    import-outside-toplevel,
 '''
 
 [tool.pylint.BASIC]

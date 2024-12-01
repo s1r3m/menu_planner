@@ -27,6 +27,7 @@ SHELL = /bin/bash  # Using bash as default shell
 CHECK_PYTHON = $(shell which $(PYTHON))
 
 export PATH := $(VIRTUAL_ENV)/bin:$(PATH)
+export PYTHONPATH = $(PROJECT_PATH)/menu_planner
 
 all: help
 
@@ -62,6 +63,7 @@ endif
 
 ## @App Start environment.
 start: stop
+	rm -rf $(PROJECT_PATH)/docker/app_logs && mkdir -p $(PROJECT_PATH)/docker/app_logs
 	cd $(PROJECT_PATH)/docker        && \
 		docker-compose build --pull  && \
 		docker-compose up
@@ -70,13 +72,18 @@ stop:
 		docker-compose kill   && \
 		docker-compose down --volumes
 
+in:
+	docker exec -it menu-planner-app bash
+
+migrate: $(VENV_ACTIVATE)
+	alembic -c $(PROJECT_PATH)/migrations/alembic.ini upgrade head
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 
 ## @Tests Run linters.
 lint: $(VENV_ACTIVATE)
 	black --check --diff --color $(PROJECT_PATH)/menu_planner
-	pylint $(PROJECT_PATH)/menu_planner/*.py
+	pylint $(PROJECT_PATH)/menu_planner/
 
 ## @Tests Run code formatter.
 style: $(VENV_ACTIVATE)
