@@ -36,7 +36,7 @@ def create_app():
     login_manager.login_view = "routes.login"
 
     # Register blueprints or routes
-    from routes import routes  # pylint: disable=import-outside-toplevel
+    from routes import routes
 
     # from api.weeks import weeks_api
     app.register_blueprint(routes)

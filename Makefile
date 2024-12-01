@@ -75,11 +75,8 @@ stop:
 in:
 	docker exec -it menu-planner-app bash
 
-local: $(VENV_ACTIVATE)
-	python $(PROJECT_PATH)/run.py
-
 migrate: $(VENV_ACTIVATE)
-	alembic -c $(PROJECT_PATH)/menu_planner/storage/alembic.ini upgrade head
+	alembic -c $(PROJECT_PATH)/migrations/alembic.ini upgrade head
 
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 

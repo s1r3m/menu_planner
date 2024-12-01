@@ -79,6 +79,7 @@ disable = '''
     too-few-public-methods,
     redefined-outer-name,
     no-member,
+    import-outside-toplevel,
 '''
 
 [tool.pylint.BASIC]
@@ -89,7 +90,7 @@ argument-rgx = '[a-z_][a-z0-9_]{1,60}$'
 function-rgx = '[a-z_][a-z0-9_]{2,115}$'
 
 # Good variable names which should always be accepted, separated by a comma.
-good-names = 'i,j,k,v,f,e,x,y,z,_,logger,pytestmark,qa,id,g'
+good-names = 'i,j,k,v,f,e,x,y,z,_,logger,pytestmark,qa,id'
 
 # Regular expression matching correct method names.
 method-rgx = '[a-z_][A-Za-z0-9_]{1,100}$'
