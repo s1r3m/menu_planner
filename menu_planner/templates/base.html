@@ -11,14 +11,18 @@
     <!-- Header -->
     <header>
         <div class="logo" onclick="window.location.href='/'">Menu Planner</div>
+        {% if g.user_data -%}
+        <a href="{{ url_for('routes.weeks') }}">Weeks</a>
+        <a href="{{ url_for('routes.meals') }}">Meals</a>
+        {% endif -%}
         <div class="auth-buttons">
-            {% if login -%}
+            {% if login and not g.user_data -%}
             <button class="btn btn-secondary" onclick=window.location.href="{{ url_for('routes.login') }}">Login</button>
             {% endif -%}
-            {% if signup -%}
+            {% if signup and not g.user_data -%}
             <button class="btn btn-primary" onclick=window.location.href="{{ url_for('routes.register') }}">Sign Up</button>
             {% endif -%}
-            {% if logout -%}
+            {% if g.user_data -%}
             <button class="btn logout-btn" onclick=window.location.href="{{ url_for('routes.logout') }}">Logout</button>
             {% endif -%}
         </div>

@@ -75,6 +75,10 @@ stop:
 in:
 	docker exec -it menu-planner-app bash
 
+reload:
+	cd docker && docker-compose restart app
+
+
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 
 ## @Tests Run linters.

@@ -174,3 +174,88 @@ footer {
     flex-shrink: 0; /* Prevent footer from shrinking */
     font-size: 0.8rem;
 }
+
+
+/* Added Meal Cell Styling */
+.meal-cell.added {
+    background-color: var(--warm-green);
+    color: var(--dark-brown);
+    font-weight: bold;
+    text-align: center;
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+/* Ensure Meal Name Fits Well */
+.meal-cell.added p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+/* Meal Grid: 7 columns x 4 rows */
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns for days */
+    gap: 1rem;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Day Header Styling */
+.day-header {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: var(--wood-brown);
+}
+
+/* Meal Cells */
+.meal-cell {
+    height: 100px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+/* Empty Cell Styling */
+.meal-cell.empty {
+    border: 2px dashed var(--wood-brown);
+    font-size: 2rem;
+    color: var(--wood-brown);
+    cursor: pointer;
+}
+
+.meal-cell.empty:hover {
+    background-color: var(--light-wood);
+    color: var(--dark-brown);
+}
+
+/* Added Meal Cell Styling */
+.meal-cell.added {
+    background-color: var(--warm-green);
+    color: var(--dark-brown);
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+/* Ensure Meal Name Fits Well */
+.meal-cell.added p {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    word-wrap: break-word;
+}

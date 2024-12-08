@@ -6,7 +6,9 @@
         <h2>Hi, {{ current_user.username }}!</h2>
         <div class="week-grid">
             {%- for week in weeks -%}
-            <div class="placeholder created-week">{{ week.name }}</div>
+            <div class="placeholder created-week">
+                <a href="{{ url_for('routes.week', username=g.user_data.name, name=week.name) }}">{{ week.name }}</a>
+            </div>
             {% endfor -%}
             {% if weeks|length < 6 -%}
             <div class="placeholder add-week">+</div>

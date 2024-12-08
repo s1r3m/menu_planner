@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Week - Menu Planner{% endblock %}
+{% block content %}
+    <main class="main-content">
+        <h2>Week {{ week.name }} for {{ week.user.username }}.</h2>
+        <div class="meal-grid">
+            <!-- Day Headers -->
+            {% for day in data.keys() %}
+            <div class="day-header">{{ day.value }}</div>
+            {% endfor %}
+
+            <!-- Meal Cells -->
+            {% for i in range(4) %} <!-- 4 rows for meal slots -->
+            {% for day, meals in data.items() %}
+            {% set meal = meals.values()[i] %}
+            {% if meal %}
+            <div class="meal-cell added">
+                <p>{{ meal.name }}</p>
+            </div>
+            {% else %}
+            <div class="meal-cell empty">+</div>
+            {% endif %}
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </main>
+{% endblock %}

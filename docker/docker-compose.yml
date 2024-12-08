@@ -4,6 +4,7 @@ services:
       context: ./../
       dockerfile: docker/app/Dockerfile
     container_name: menu-planner-app
+    restart: always
     volumes:
       - ./../menu_planner:/app/
       - ./../menu_planner/static:/var/www/static/:ro

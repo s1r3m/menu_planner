@@ -13,15 +13,14 @@ logger_format = logging.Formatter("%(asctime)s %(levelname)s: %(filename)s -- %(
 console_handler = logging.StreamHandler()
 console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(logger_format)
-
-# File Handler (RotatingFileHandler)
-file_handler = RotatingFileHandler("logs/menu_planner.log", maxBytes=1_000_000, backupCount=5)
-file_handler.setLevel(logging.DEBUG)
-file_handler.setFormatter(logger_format)
-
-# Add handlers to the logger
 logger.addHandler(console_handler)
-logger.addHandler(file_handler)
+
+# # File Handler (RotatingFileHandler)
+# if not (__name__ == '__main__'):
+#     file_handler = RotatingFileHandler("logs/menu_planner.log", maxBytes=1_000_000, backupCount=5)
+#     file_handler.setLevel(logging.DEBUG)
+#     file_handler.setFormatter(logger_format)
+#     logger.addHandler(file_handler)
 
 
 def create_app():
@@ -51,3 +50,7 @@ def create_app():
 
 
 app = create_app()
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', port=8000, debug=True)
