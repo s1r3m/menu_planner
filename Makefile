@@ -75,9 +75,6 @@ stop:
 in:
 	docker exec -it menu-planner-app bash
 
-migrate: $(VENV_ACTIVATE)
-	alembic -c $(PROJECT_PATH)/migrations/alembic.ini upgrade head
-
 ## ------------------------------------------------ TESTS --------------------------------------------------------------
 
 ## @Tests Run linters.

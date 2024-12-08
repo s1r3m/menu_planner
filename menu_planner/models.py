@@ -10,10 +10,13 @@ class User(UserMixin, db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Text, unique=True, nullable=False)
+    email = db.Column(db.Text, unique=True, nullable=False)
     password_hash = db.Column(db.Text, nullable=False)
+    weeks = db.relationship('Week', backref='user', lazy='dynamic')
 
-    def __init__(self, username: str) -> None:
+    def __init__(self, username: str, email: str) -> None:
         self.username = username
+        self.email = email
 
     def __repr__(self) -> str:
         return f'<User {self.username}>'
@@ -31,7 +34,6 @@ class User(UserMixin, db.Model):
 @login_manager.user_loader
 def load_user(user_id: str) -> User:
     user = db.session.get(User, int(user_id))
-    current_app.logger.debug('User loaded: %s', user)
     return user
 
 
